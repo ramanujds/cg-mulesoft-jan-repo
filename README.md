@@ -3,7 +3,6 @@
 ```sql
 
 
-
 -- DDL Commands --
 create database cg_mulesoft_jan;
 use cg_mulesoft_jan;
@@ -168,7 +167,48 @@ select e.*, dept_name, location from employee e left join dept d on e.deptno=d.d
 
 select dept.deptno, dept_name, location from dept left join employee on dept.deptno=employee.deptno where emp_id is null;
 
+-- Using Subquery --
+
+select * from dept where deptno not in(select deptno from employee);
+
 -- Show the dept details along with total employees in each dept --
+
+select d.deptno as 'Dept No', dept_name as 'Dept. Name', location as 'Location', count(e.emp_id) as 'Employee Count' from dept d left join employee e on d.deptno = e.deptno group by d.deptno;
+
+-- Using co-realated subquery --
+
+select d.*,(select count(emp_id) from employee e where e.deptno=d.deptno) as 'Total Employees' from dept d;
+
+-- Display the details of the employees who are working in Software Dept. --
+
+select e.*,dept_name,location from employee e join dept d on e.deptno=d.deptno where dept_name='Software';
+
+select e.*,dept_name,location from employee e, dept d where e.deptno=d.deptno AND dept_name='Software';
+
+select * from employee where deptno in (select deptno from dept where dept_name='Software');
+
+
+alter table employee add reporting_to varchar(10);
+
+select * from employee;
+
+update employee set reporting_to='e201' where emp_id in('e202');
+
+-- Display the details of all managers (reporting_to) --
+
+select distinct e1.* from employee e1 join employee e2 on e1.emp_id=e2.reporting_to;
+
+-- Count the employees working under each manager --
+
+select e1.emp_id, e1.emp_name, count(*) as 'Total Employess' from employee e1 join employee e2 on  e1.emp_id=e2.reporting_to group by e1.emp_id, e1.emp_name;
+
+-- Subqueries --
+
+-- Display the details of all managers (reporting_to) --
+
+select distinct reporting_to from employee;
+
+select * from employee where emp_id in(select distinct reporting_to from employee);
 
 
 ```
