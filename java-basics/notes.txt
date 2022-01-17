@@ -1,0 +1,184 @@
+Keywords - Reserved Word eg - int, void, public 
+
+Intentifiers - Names given to classes, variables, functions etc.
+
+Variables - Named location in the memory to store data
+
+Constants/Literals - values given to variable
+
+
+How to declare a variable?
+
+Syntax -
+
+data-type variable-name;
+
+eg. int num;
+
+	 float average=3.5F;
+
+
+Data - Types
+------------------
+(Primary)
+int, byte, short, long
+float, double
+char
+boolean
+
+
+(Derived/Referrence)
+Arrays
+String
+Class
+Object
+
+
+
+
+Decision Making and Branching
+-----------------------------
+if-else
+switch
+conditional operator
+
+
+if-else
+-------
+if(condition){
+	statements;
+}
+else{
+	statements;
+}
+
+find wheteher a number is even or odd
+-------------------------------------
+int num=7;
+if(num%2==0){
+	System.out.println("Even");
+}
+else{
+	System.out.println("Odd");
+}
+
+
+switch
+----------
+
+switch(variable){
+	case value1:
+		statement;
+		break;
+	case value2:
+		statement;
+		break;
+	...
+	...
+	default:
+		statement;
+		break;
+}
+
+
+Show the names of the week days from numbers
+--------------------------------------------
+
+int day=2;
+switch(day){
+	case 1:
+		System.out.println("Mon Day");
+		break;
+	case 2:
+		System.out.println("Tues Day");
+		break;
+	..
+	..
+	default:
+		System.out.println("Invalid Day");
+		break;
+}
+
+
+Conditional Operator
+--------------------
+
+?:
+
+expression?value1:value2;
+
+int a=10;
+int b=20;
+
+int largest=a>b?a:b;
+
+
+Looping
+---------
+while
+do-while
+for
+
+
+while
+------
+
+while(condition){
+	statement;
+	...
+}
+
+int count=0;
+while(count<10){
+	System.out.println("Hello World");
+	count=count+1;
+}
+
+do-while
+---------
+
+do{
+	statements;
+}while(condition);
+
+
+
+int count=0;
+do{
+	System.out.println("Hello World");
+	count=count+1;
+}while(count<10);
+
+
+for-loop
+---------
+
+for(initialization; test-condition; incr/decr){
+	statements;
+}
+
+
+for(int count=0; count<10; count++){
+	System.out.println("Hello World");
+}
+
+
+String -
+-----------
+String str1 = "hello";
+String str2 = new String("hello");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
