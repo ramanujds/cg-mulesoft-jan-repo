@@ -1,9 +1,19 @@
 package vehicles;
-public class Vehicle{
+public abstract class Vehicle{
 	protected String regNo;  // properties
 	protected String model;	// or fields
 	protected String color;	// or instance variables
 	protected String vehicleType;
+
+	public Vehicle(){ }
+
+	public Vehicle(String regNo, String model, String color, String vehicleType){
+		this.regNo=regNo;
+		this.model=model;
+		this.color=color;
+		this.vehicleType=vehicleType;
+		
+	}
 
 	public void setRegNo(String regNo){
 		this.regNo=regNo;
@@ -41,9 +51,8 @@ public class Vehicle{
 		System.out.println("Engine Strated...");
 	}
 
-	public void brake(){
-		System.out.println("Brakes Applied..");
-	}
+	// Abstract Method
+	public abstract void brake();
 
 	public void showVehicleInfo(){
 		System.out.println("Reg No. - "+regNo);

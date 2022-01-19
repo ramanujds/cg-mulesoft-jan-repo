@@ -4,7 +4,17 @@ import vehicles.Vehicle;
 public class Bike extends Vehicle{
 	
 
+
+
 	private String suspensionType;
+
+	public Bike() { }
+
+	public Bike(String regNo, String model, String color, String vehicleType, String suspensionType){
+		super(regNo, model, color, vehicleType);
+		this.suspensionType=suspensionType;
+		
+	}
 
 	public void setSuspensionType(String suspensionType){
 		this.suspensionType=suspensionType;
@@ -19,9 +29,12 @@ public class Bike extends Vehicle{
 		System.out.println("Side Stand Applied");
 	}
 
+
 	public void brake(){
+		
 		System.out.println("Brakes Applied on Bike..ABS Worked..");
 	}
-	
+
+
 		
 }
