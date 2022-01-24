@@ -219,7 +219,7 @@ select * from employee where emp_id in(select distinct reporting_to from employe
 
 Keywords - Reserved Word eg - int, void, public 
 
-Intentifiers - Names given to classes, variables, functions etc.
+Identifiers - Names given to classes, variables, functions etc.
 
 Variables - Named location in the memory to store data
 
