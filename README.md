@@ -1,3 +1,10 @@
+## Adding ssh to gitlab for cloning repository
+
+```bash
+ssh-add -K [name-of-the-key]
+
+```
+
 # DBMS - SQL
 
 ```sql
