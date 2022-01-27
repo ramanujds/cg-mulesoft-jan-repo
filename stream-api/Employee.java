@@ -1,5 +1,3 @@
-package com.cg.examples;
-
 import java.time.LocalDate;
 
 public class Employee {
