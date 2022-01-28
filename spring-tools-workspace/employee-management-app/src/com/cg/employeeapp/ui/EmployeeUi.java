@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import com.cg.employeeapp.exception.DuplicateEmployeeException;
 import com.cg.employeeapp.model.Employee;
 import com.cg.employeeapp.service.EmployeeService;
 import com.cg.employeeapp.service.EmployeeServiceImpl;
@@ -58,9 +59,13 @@ public class EmployeeUi {
 		float salary = scan.nextFloat();
 		
 		Employee employee= new Employee(employeeId, employeeName, email, hireDate, salary);
-		
+		try {
 		Employee savedEmployee = serviceObj.addEmployee(employee);
 		System.out.println(employee);
+		}
+		catch (DuplicateEmployeeException ex) {
+			System.out.println("Eroor!! "+ex.getMessage());
+		}
 		
 		
 	}

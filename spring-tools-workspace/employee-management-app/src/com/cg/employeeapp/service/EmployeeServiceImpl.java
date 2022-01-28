@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.cg.employeeapp.dao.EmployeeDao;
 import com.cg.employeeapp.dao.EmployeeDaoImpl;
+import com.cg.employeeapp.exception.DuplicateEmployeeException;
+import com.cg.employeeapp.exception.EmployeeNotFoundException;
 import com.cg.employeeapp.model.Employee;
 
 public class EmployeeServiceImpl implements EmployeeService {
@@ -15,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public Employee addEmployee(Employee employee) {
+	public Employee addEmployee(Employee employee)throws DuplicateEmployeeException {
 		return daoObj.saveEmployee(employee);
 	}
 
@@ -26,13 +28,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean deleteEmployeeById(int employeeId) {
+	public boolean deleteEmployeeById(int employeeId) throws EmployeeNotFoundException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee) {
+	public Employee updateEmployee(Employee employee) throws EmployeeNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
