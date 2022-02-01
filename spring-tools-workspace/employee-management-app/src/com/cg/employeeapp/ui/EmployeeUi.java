@@ -1,5 +1,8 @@
 package com.cg.employeeapp.ui;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -23,7 +26,8 @@ public class EmployeeUi {
 		System.out.println("\nSelect an Option : ");
 		System.out.println("1 - Add Employee");
 		System.out.println("2 - View all Employees");
-		System.out.println("3 - Exit Application");
+		System.out.println("3 - Search an Employee");
+		System.out.println("4 - Exit");
 		int choice = scan.nextInt();
 		switch(choice) {
 		case 1:
@@ -33,6 +37,9 @@ public class EmployeeUi {
 			showAllEmployees();
 			break;
 		case 3:
+			searchEmployee();
+			break;
+		case 4:
 			System.exit(1);
 			break;
 		default:
@@ -64,7 +71,10 @@ public class EmployeeUi {
 		System.out.println(employee);
 		}
 		catch (DuplicateEmployeeException ex) {
-			System.out.println("Eroor!! "+ex.getMessage());
+			System.out.println("Error!! "+ex.getMessage());
+		} catch (SQLException e) {
+			
+			System.err.println("DB Connection Error!! "+e.getMessage());
 		}
 		
 		
@@ -72,10 +82,27 @@ public class EmployeeUi {
 	
 	public void showAllEmployees() {
 		
-		List<Employee> employees = serviceObj.getAllEmployees();
+		List<Employee> employees=null;
+		try {
+			employees = serviceObj.getAllEmployees();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		employees.forEach(emp->System.out.println(emp));
 		
+	}
+	
+	public void searchEmployee() {
+		System.out.print("Enter ID to search : ");
+		int employeeId = scan.nextInt();
+		try {
+			Employee emp = serviceObj.getEmployeeById(employeeId);
+			System.out.println(emp);
+		} catch (SQLException e) {
+			System.err.println("DB Connection Error!! "+e.getMessage());
+		}
 	}
 	
 }
