@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.employeeapp.exception.DuplicateEmployeeException;
@@ -66,9 +67,24 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Employee> getAllEmployees() throws SQLException {
+		con=DbConnectionUtil.getDbConnection();
+		psmt = con.prepareStatement("select * from employee_db");
+		rst = psmt.executeQuery();
+		List<Employee> employees = new ArrayList<>();
+		
+		while(rst.next()) {
+			Employee emp = new Employee();
+			emp.setEmployeeId(rst.getInt("employee_id"));
+			emp.setEmail(rst.getString("email"));
+			emp.setEmployeeName(rst.getString("employee_name"));
+			emp.setHireDate(rst.getDate("hiredate").toLocalDate());
+			emp.setSalary(rst.getFloat("salary"));
+			employees.add(emp);
+		}
+		
+		
+		return employees;
 	}
 	
 	
