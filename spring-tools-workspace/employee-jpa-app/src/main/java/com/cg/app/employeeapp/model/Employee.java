@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee_info")
+@NamedQuery(name = "getEmployeeByName", query = "from Employee where employeeName=:ename")
 public class Employee {
 
 	@Id
