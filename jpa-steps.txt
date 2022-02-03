@@ -1,0 +1,78 @@
+JPA
+
+Java Persistence API
+
+ORM
+Object Relation Mapping
+
+Java										Database(RDBMS)
+------										---------------
+Object Oriented							Relational
+Employee class							Employee Table
+
+class Employee{							Table Employee(
+	int employeeId;							employee_id number,
+	String employeeName;					employee_name varchar(30),
+	....										....)
+}		
+
+Employee object = 						Row/Record
+			new Employee(...);
+
+pesrist(object);
+
+ORM Providers - 
+Hibernate/TopLink/IBatis
+
+JPA vs Hibernate
+
+JPA is a specification Hibernate is an implementation
+
+Advantages -
+1. No need to write low level JDBC code
+2. No need to deal with SQL Queries
+3. Database Package independent
+
+
+How to create JPA Project?
+
+Step 1 - Create a maven project
+Step 2 - Add dependencies for Hibernate and Database Drivers
+Step 3 - Create Persistence Unit (Contain Database/JPA Configuration)
+			(persistence.xml)
+Step 4 - Create Entity class
+Step 5 - Write code to implement CRUD operations
+			- Create EntityManagerFactory
+			- Create EntityManger
+			- invoke different methods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

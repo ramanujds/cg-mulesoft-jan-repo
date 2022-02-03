@@ -15,6 +15,13 @@ public class AppMain {
 		car.startMusic();
 		
 		car.stopMusic();
+		
+		car.showCarInfo();
+		
+		context.getBean(Car.class);
+		context.getBean(Car.class);
+		context.getBean(Car.class);
+		context.getBean(Car.class);
 
 	}
 
