@@ -10,6 +10,7 @@ public class Employee {
 	private String email;
 	private LocalDate hireDate;
 	private double salary;
+	Department dept;
 	
 	public Employee() {
 	}
@@ -63,7 +64,7 @@ public class Employee {
 	}
 
 	public Employee(int employeeId, String firstName, String lastName, String email, LocalDate hireDate,
-			double salary) {
+			double salary, Department dept) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
@@ -71,13 +72,24 @@ public class Employee {
 		this.email = email;
 		this.hireDate = hireDate;
 		this.salary = salary;
+		this.dept=dept;
+	}
+
+	public Department getDept() {
+		return dept;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", hireDate=" + hireDate + ", salary=" + salary + "]";
+				+ email + ", hireDate=" + hireDate + ", salary=" + salary + ", dept=" + dept + "]";
 	}
+
+	
 	
 	
 	
