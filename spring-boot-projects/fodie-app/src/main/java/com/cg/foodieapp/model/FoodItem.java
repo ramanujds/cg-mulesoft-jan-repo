@@ -14,9 +14,9 @@ public class FoodItem {
 
 	private String itemCode;
 	private String itemName;
-	@JsonIgnore
+//	@JsonIgnore
 	private float price;
-	@JsonProperty("availity-status")
+//	@JsonProperty("availity-status")
 	private boolean isAvailable;
 	
 }
