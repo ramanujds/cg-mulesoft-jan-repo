@@ -3,6 +3,8 @@ package com.cg.foodieapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.foodieapp.model.FoodItem;
@@ -25,13 +28,15 @@ public class FoodItemController {
 	private FoodItemService service;
 
 //	@RequestMapping(value = "/items", method = {RequestMethod.POST})
-	@PostMapping("/items")
+	@PostMapping(value="/items", produces = {"application/json","application/xml"},
+							consumes = {"application/json","application/xml"})
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public FoodItem addItem(@RequestBody FoodItem item) {
 		return service.addItem(item);
 	}
 	
 	
-	@GetMapping("/items")
+	@GetMapping(value = "/items", produces = {"application/json","application/xml"})
 	public List<FoodItem> getAllItems(){
 		return service.getAllItems();
 	}
@@ -43,13 +48,23 @@ public class FoodItemController {
 	
 	
 	@DeleteMapping("/items/code/{code}")
-	public boolean deleteFoodItemByCode(@PathVariable("code") String itemCode) {
-		return service.deleteItem(itemCode);
+	public ResponseEntity<Boolean> deleteFoodItemByCode(@PathVariable("code") String itemCode) {
+		if(service.getItemByCode(itemCode)==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		boolean isDeleted =  service.deleteItem(itemCode);
+		if(isDeleted) {
+			return new ResponseEntity<>(isDeleted,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(isDeleted,HttpStatus.NOT_MODIFIED);
+		}
 	}
 	
 	@PutMapping("/items")
-	public FoodItem updateItem(@RequestBody FoodItem item) {
-		return service.updateItem(item);
+	public ResponseEntity<FoodItem> updateItem(@RequestBody FoodItem item) {
+		FoodItem updatedItem = service.updateItem(item);
+		return ResponseEntity.ok(updatedItem);
 	}
 	
 	
