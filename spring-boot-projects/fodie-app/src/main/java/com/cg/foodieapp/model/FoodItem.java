@@ -1,5 +1,6 @@
 package com.cg.foodieapp.model;
 
+import com.cg.foodieapp.dto.RecipeDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,5 +19,7 @@ public class FoodItem {
 	private float price;
 //	@JsonProperty("availity-status")
 	private boolean isAvailable;
+	
+	private RecipeDto recipe;
 	
 }
