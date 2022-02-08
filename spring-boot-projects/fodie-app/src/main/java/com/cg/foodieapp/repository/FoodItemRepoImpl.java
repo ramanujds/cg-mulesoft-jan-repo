@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Repository;
 
+import com.cg.foodieapp.exception.FoodItemNotFoundException;
 import com.cg.foodieapp.model.FoodItem;
 
 @Repository
@@ -40,7 +41,10 @@ public class FoodItemRepoImpl implements FoodItemRepo, InitializingBean {
 	}
 
 	@Override
-	public boolean deleteItem(String itemCode) {
+	public boolean deleteItem(String itemCode) throws FoodItemNotFoundException {
+		if(!items.containsKey(itemCode)) {
+			throw new FoodItemNotFoundException("Food Item with code ["+itemCode+"] Not Found.");
+		}
 		items.remove(itemCode);
 		return !items.containsKey(itemCode);
 	}

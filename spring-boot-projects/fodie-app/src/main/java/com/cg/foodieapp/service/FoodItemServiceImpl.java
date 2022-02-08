@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.cg.foodieapp.dto.RecipeDto;
+import com.cg.foodieapp.exception.FoodItemNotFoundException;
 import com.cg.foodieapp.model.FoodItem;
 import com.cg.foodieapp.repository.FoodItemRepo;
 
@@ -43,7 +44,7 @@ public class FoodItemServiceImpl implements FoodItemService {
 	}
 
 	@Override
-	public boolean deleteItem(String itemCode) {
+	public boolean deleteItem(String itemCode)throws FoodItemNotFoundException {
 		return repo.deleteItem(itemCode);
 	}
 

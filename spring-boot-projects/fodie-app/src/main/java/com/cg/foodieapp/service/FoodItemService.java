@@ -2,6 +2,7 @@ package com.cg.foodieapp.service;
 
 import java.util.List;
 
+import com.cg.foodieapp.exception.FoodItemNotFoundException;
 import com.cg.foodieapp.model.FoodItem;
 
 public interface FoodItemService {
@@ -12,7 +13,7 @@ public interface FoodItemService {
 	
 	public FoodItem updateItem(FoodItem item);
 	
-	public boolean deleteItem(String itemCode);
+	public boolean deleteItem(String itemCode)throws FoodItemNotFoundException;
 	
 	public List<FoodItem> getAllItems();
 	

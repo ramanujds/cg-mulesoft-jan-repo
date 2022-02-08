@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.foodieapp.exception.FoodItemNotFoundException;
 import com.cg.foodieapp.model.FoodItem;
 import com.cg.foodieapp.service.FoodItemService;
 
@@ -48,17 +49,12 @@ public class FoodItemController {
 	
 	
 	@DeleteMapping("/items/code/{code}")
-	public ResponseEntity<Boolean> deleteFoodItemByCode(@PathVariable("code") String itemCode) {
-		if(service.getItemByCode(itemCode)==null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Boolean> deleteFoodItemByCode(@PathVariable("code") String itemCode)throws FoodItemNotFoundException {
+	
 		boolean isDeleted =  service.deleteItem(itemCode);
-		if(isDeleted) {
+		
 			return new ResponseEntity<>(isDeleted,HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(isDeleted,HttpStatus.NOT_MODIFIED);
-		}
+		
 	}
 	
 	@PutMapping("/items")
