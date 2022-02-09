@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.cg.foodieapp.dto.ErrorResponse;
+import com.cg.foodieapp.exception.DuplicateItemException;
 import com.cg.foodieapp.exception.FoodItemNotFoundException;
 
 @RestControllerAdvice
@@ -27,6 +28,17 @@ public class FoodItemErrorController {
 									ex.getLocalizedMessage(), 
 									request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+	}
+	
+	@ExceptionHandler(value = {DuplicateItemException.class})
+	// @ResponseStatus(code = HttpStatus.CONFLICT)
+	public ResponseEntity<ErrorResponse> handleDuplicateItemException(Exception ex, HttpServletRequest request) {
+		ErrorResponse body= new ErrorResponse(LocalDateTime.now(),
+									HttpStatus.CONFLICT.value() , 
+									ex.getClass().getSimpleName(), 
+									ex.getLocalizedMessage(), 
+									request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
 	}
 	
 }

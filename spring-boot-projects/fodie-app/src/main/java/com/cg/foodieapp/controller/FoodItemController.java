@@ -63,6 +63,11 @@ public class FoodItemController {
 		return ResponseEntity.ok(updatedItem);
 	}
 	
+	@GetMapping("/items/name/{itemName}")
+	public FoodItem searchItemByName(@PathVariable String itemName) {
+		return service.findItemByName(itemName);
+	}
+	
 	
 	
 //	@RequestMapping("/item")

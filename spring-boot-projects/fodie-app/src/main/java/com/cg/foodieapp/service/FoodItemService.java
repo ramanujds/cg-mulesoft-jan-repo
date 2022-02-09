@@ -17,4 +17,6 @@ public interface FoodItemService {
 	
 	public List<FoodItem> getAllItems();
 	
+	public FoodItem findItemByName(String itemName);
+	
 }
