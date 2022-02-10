@@ -16,7 +16,7 @@ public class OrderServiceImpl {
 	@Autowired
 	RestTemplate menuServiceClient;
 	
-	private String menuServiceUri="http://localhost:8100/items/code/";
+	private String menuServiceUri="http://FOODIEAPP-MENU-SERVICE/items/code/";
 
 	public OrderDetails orderItem(String itemCode, int quantity) {
 		
