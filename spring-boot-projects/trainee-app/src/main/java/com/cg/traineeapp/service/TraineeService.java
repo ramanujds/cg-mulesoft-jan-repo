@@ -43,11 +43,19 @@ public class TraineeService {
 //		
 //		System.out.println(trainee);
 		
-		Project project = projectRepo.findById(1002).get();
+//		Project project = projectRepo.findById(1002).get();
 		
-		System.out.println(project);
+//		System.out.println(project);
 		
 		
+	}
+	
+	public Trainee addTrainee(Trainee trainee) {
+		return traineeRepo.save(trainee);
+	}
+	
+	public Trainee getTraineeById(int traineeId) {
+		return traineeRepo.findById(traineeId).orElse(null);
 	}
 	
 	
