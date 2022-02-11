@@ -20,7 +20,7 @@ public class OrderServiceImpl {
 	
 	private String menuServiceUri="http://FOODIEAPP-MENU-SERVICE/items/code/";
 
-	
+	@CircuitBreaker(name="menu-service", fallbackMethod = "orderItemFallback")
 	public OrderDetails orderItem(String itemCode, int quantity) {
 		
 		MenuItem item = menuServiceClient.getForObject(menuServiceUri+itemCode, MenuItem.class);
@@ -34,6 +34,19 @@ public class OrderServiceImpl {
 		
 	}
 	
+public OrderDetails orderItemFallback(String itemCode, int quantity, Exception ex) {
+		
+		MenuItem item = new MenuItem(itemCode, "Sandwich", 100);
+		float total = quantity*item.getPrice();
+		OrderDetails order = new OrderDetails();
+		order.setItemOrdered(item);
+		order.setTotal(total);
+		String orderCode = "s-"+LocalDate.now().getMonthValue()+"-"+LocalTime.now().toString();
+		order.setOrderCode(orderCode);
+		return order;
+		
+	}
+
 	
 	
 	
