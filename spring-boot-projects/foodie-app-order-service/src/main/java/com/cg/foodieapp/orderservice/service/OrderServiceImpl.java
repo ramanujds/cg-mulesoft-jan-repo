@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import com.cg.foodieapp.orderservice.model.MenuItem;
 import com.cg.foodieapp.orderservice.model.OrderDetails;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @Service
 public class OrderServiceImpl {
 	
@@ -18,6 +20,7 @@ public class OrderServiceImpl {
 	
 	private String menuServiceUri="http://FOODIEAPP-MENU-SERVICE/items/code/";
 
+	
 	public OrderDetails orderItem(String itemCode, int quantity) {
 		
 		MenuItem item = menuServiceClient.getForObject(menuServiceUri+itemCode, MenuItem.class);
@@ -30,5 +33,9 @@ public class OrderServiceImpl {
 		return order;
 		
 	}
+	
+	
+	
+	
 	
 }

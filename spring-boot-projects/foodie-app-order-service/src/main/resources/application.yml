@@ -1,0 +1,27 @@
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      foodieapp-order-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 10
+        waitDurationInOpenState: 10s
+        slidingWindowType: COUNT_BASED
+        
+        
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always

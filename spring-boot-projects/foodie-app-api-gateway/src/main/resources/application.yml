@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: foodieapp-api-gateway
+  
+  cloud:
+    gateway:
+      routes:
+      - id: foodieapp-menu-service
+        uri:
+          lb://foodieapp-menu-service
+        predicates:
+        - Path=/items/**
+        
+      - id: foodieapp-order-service
+        uri:
+          lb://foodieapp-order-service
+        predicates:
+        - Path=/order/**
+    
+server:
+  port: 8888
+  
+
