@@ -13,8 +13,11 @@ import com.cg.foodieapp.exception.FoodItemNotFoundException;
 import com.cg.foodieapp.model.FoodItem;
 import com.cg.foodieapp.repository.FoodItemJpaRepo;
 
+import lombok.Data;
+
 
 @Service
+@Data
 public class FoodItemServiceImpl implements FoodItemService {
 
 	@Autowired
