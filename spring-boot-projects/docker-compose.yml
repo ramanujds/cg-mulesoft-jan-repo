@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+  mysql:
+    image: 5c62e459e087
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: food_db
+    networks:
+      - foodieapp-network 
+
+  eureka-server:
+    image: foodieapp-eureka-server 
+    ports:
+      - "8761:8761"
+    restart: always
+    depends_on:
+      - mysql 
+    networks:
+      - foodieapp-network 
+
+  # menu-service:
+  #   image: foodieapp-menu-service 
+  #   ports:
+  #     - "8100:8100"
+  #   restart: always
+  #   depends_on:
+  #     - mysql 
+  #     - eureka-server
+  #   environment:
+  #     MYSQL_DATABASE: food_db
+  #     MYSQL_HOST: mysql
+  #     MYSQL_PORT: 3306
+  #     MYSQL_PASSWORD: password
+  #     MYSQL_USER: root
+  #     EUREKA_HOST: eureka-server
+  #   networks:
+  #     - foodieapp-network 
+
+  order-service:
+    image: foodieapp-order-service 
+    ports:
+      - "8000:8000"
+    restart: always
+    depends_on:
+      - eureka-server
+    environment:
+      EUREKA_HOST: eureka-server
+    networks:
+      - foodieapp-network 
+
+  api-gateway:
+    image: foodieapp-api-gateway 
+    ports:
+      - "8888:8888"
+    restart: always
+    depends_on:
+      - eureka-server
+    environment:
+      EUREKA_HOST: eureka-server
+    networks:
+      - foodieapp-network 
+
+networks:
+  foodieapp-network:
