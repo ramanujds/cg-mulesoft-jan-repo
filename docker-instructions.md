@@ -68,3 +68,52 @@ docker run -p 3306:3306 --network=foodie-app-network -e MYSQL_ROOT_PASSWORD=pass
 docker run -p 8500:8500 --network=foodie-app-network -e MYSQL_HOST=mysql -e MYSQL_PORT=3306 -e MYSQL_DATABASE=cg_db -e MYSQL_USER=root -e MYSQL_PASSWORD=password -d --name foodie-app foodie-app
 
 ```
+
+## Docker Compose
+* Step 2 - Install Docker-compose
+
+__Installing Docker-compose on EC2:__
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+```
+
+* Step 3 - Commands to strat and stop the containers -
+
+```bash
+
+docker-compose up
+
+```
+
+
+### Important Docker Compose Commands
+
+* Docker-compose Configuration
+
+```bash
+docker-compose config
+```
+
+* Docker-Compose Images Used
+
+```bash
+docker-compose images
+```
+
+
+* Docker-Compose Pause, Resume, Stop, Kill 
+
+```bash
+docker-compose pause
+docker-compose unpause
+docker-compose stop
+docker-compose kill
+
+```
