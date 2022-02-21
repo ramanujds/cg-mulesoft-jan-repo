@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - echo installing..
+  pre_build:
+    commands:
+      - echo pre_build     
+  build:
+    commands:
+      - cd spring-boot-simple-app
+      - mvn clean package
+      - echo building..
+  post_build:
+    commands:
+      - echo post_build
+      
+artifacts:
+  files:
+    - spring-boot-simple-app/target/spring-boot-simple-app-0.0.1-SNAPSHOT.jar
+
+  discard-paths: yes 
